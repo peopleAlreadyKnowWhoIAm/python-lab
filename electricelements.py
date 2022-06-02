@@ -1,8 +1,10 @@
 from typing import Tuple
 
+
 class BasicElement:
     """_summary_
     """
+
     def __init__(self, max_working_voltage: float, min_working_voltage: float) -> None:
         self.max_working_voltage = max_working_voltage
         self.min_working_voltage = min_working_voltage
@@ -10,9 +12,11 @@ class BasicElement:
     def __str__(self) -> str:
         return 'Something'
 
+
 class Analog(BasicElement):
     """_summary_
     """
+
     def __init__(self,
                  accuracy: float, max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(max_working_voltage, min_working_voltage)
@@ -21,10 +25,12 @@ class Analog(BasicElement):
     def __str__(self) -> str:
         return 'Something analog'
 
+
 class Digit(BasicElement):
     """_summary_
     """
-    def __init__(self, logic_one_min_voltage: float, logic_zero_max_voltage:float,
+
+    def __init__(self, logic_one_min_voltage: float, logic_zero_max_voltage: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(max_working_voltage, min_working_voltage)
         self.logic_one_min_voltage = logic_one_min_voltage
@@ -33,9 +39,11 @@ class Digit(BasicElement):
     def __str__(self) -> str:
         return 'Something digit'
 
+
 class Impulse(Analog):
     """_summary_
     """
+
     def __init__(self, max_frequency: int, accuracy: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(accuracy, max_working_voltage, min_working_voltage)
@@ -48,6 +56,7 @@ class Impulse(Analog):
 class OperationalAmplifier(Analog):
     """_summary_
     """
+
     def __init__(self, input_voltage: float, ampliefing_coef: float, accuracy: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(accuracy, max_working_voltage, min_working_voltage)
@@ -63,7 +72,8 @@ class OperationalAmplifier(Analog):
 class CurrentSource(Analog):
     """_summary_
     """
-    def __init__(self, current:float, accuracy: float,
+
+    def __init__(self, current: float, accuracy: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(accuracy, max_working_voltage, min_working_voltage)
         self.current = current
@@ -71,14 +81,16 @@ class CurrentSource(Analog):
     def __str__(self) -> str:
         return f"This is a current source. Output {self.current} amperes."
 
+
 class VoltageSource(Analog):
     """_summary_
     """
-    def __init__(self, voltage:float, accuracy: float,
+
+    def __init__(self, voltage: float, accuracy: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(accuracy, max_working_voltage, min_working_voltage)
         self.voltage = voltage
-    
+
     def __str__(self) -> str:
         return f"This is a voltage source. Output {self.voltage} volts."
 
@@ -86,6 +98,7 @@ class VoltageSource(Analog):
 class BinaryToUnaryDecoder(Digit):
     """_summary_
     """
+
     def __init__(self, input_values: Tuple[bool], logic_one_min_voltage: float,
                  logic_zero_max_voltage: float, max_working_voltage: float,
                  min_working_voltage: float) -> None:
@@ -100,11 +113,13 @@ class BinaryToUnaryDecoder(Digit):
     def __str__(self) -> str:
         return f"This is a binnary-unary decoder. Input {self.input}. Output {self.output}."
 
+
 class BinarySummator(Digit):
     """_summary_
     """
+
     def __init__(self, input_1: Tuple[bool], input_2: Tuple[bool],
-                 logic_one_min_voltage: float, logic_zero_max_voltage: float, 
+                 logic_one_min_voltage: float, logic_zero_max_voltage: float,
                  max_working_voltage: float, min_working_voltage: float) -> None:
         super().__init__(logic_one_min_voltage, logic_zero_max_voltage,
                          max_working_voltage, min_working_voltage)
